@@ -1,6 +1,11 @@
 var app = angular.module("app", ["ui.router", "restangular"]);
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
     $urlRouterProvider.otherwise('/home');
+
 
     $stateProvider
         .state('/home', {
