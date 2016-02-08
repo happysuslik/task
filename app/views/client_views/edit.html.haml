@@ -1,0 +1,20 @@
+%header.text-center
+  %h3 Edit Task
+%body.row
+  %div.col-md-6.col-md-offset-3
+    %form{name: "formEdit", novalidate: "true"}
+      %div.input-group
+        %span.input-group-addon
+          %input{type: "checkbox", "ng-model": "task.completed", name: "editCheckBox"}
+        %input.form-control{type: "text", name: "input",
+                                          placeholder: "Input your task",
+                                          "ng-model": "task.text",
+                                          "ng-class": "task.completed === true ? 'green' : ''",
+                                          "ng-required": "true"}
+        %span.input-group-btn
+          %button.btn.btn-default{"ng-click": "save()", "ng-disabled": "formEdit.$invalid"}
+            Save
+          %button.btn.btn-default{"ng-click": "cancel()"}
+            Cancel
+      %div.alert-danger{"ng-show": "formEdit.input.$invalid"}
+        {{getError(formEdit.input.$error)}}

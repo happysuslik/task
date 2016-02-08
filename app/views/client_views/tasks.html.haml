@@ -1,0 +1,36 @@
+
+%h2.text-center
+  All Tasks
+%div.row
+  %div.col-md-6.col-md-offset-3
+    %form{name: "myForm", novalidate: "true", class: "myForm"}
+      %div.input-group
+        %span.input-group-addon
+          %input{type: "checkbox", "ng-model": "task.completed", name: "uCheckBox"}
+
+        %input.form-control{name: "uTask", type: "text",
+                                           placeholder: "Input your task",
+                                           "ng-model": "task.text",
+                                           "ng-required": "true"}
+
+        %span.input-group-btn
+          %button.btn.btn-default{"ng-click": "addTask(task)", "ng-disabled": "myForm.$invalid"}
+            Add
+
+    %div.alert-danger{"ng-show": "myForm.uTask.$invalid" && "myForm.uTask.$dirty"}
+      {{getError(myForm.uTask.$error)}}
+    %div.alert.alert-info.text-center{role: "alert"}
+      Your personal tasks
+
+    %div.input-group{"ng-repeat": "task in tasks"}
+      %span.input-group-addon
+        %input{type: "checkbox", name: "tCheckBox", "ng-model": "task.completed", "ng-click": "editCheckBox(task)"}
+
+      %div.form-control{id: "viewTask","ng-class": "task.completed === true ? 'green' : ''"}
+        {{task.text}}
+
+      %span.input-group-btn
+        %button.btn.btn-default{"ng-click": "destroy(task)"}
+          Destroy
+        %button.btn.btn-default{"ng-click": "edit(task)"}
+          Edit task

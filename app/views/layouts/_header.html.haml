@@ -1,0 +1,10 @@
+%div.navbar
+  %div.navbar-header
+    %p.navbar-brand The Task
+  %ul.nav.navbar-nav
+    %li= link_to 'Home', root_path
+  %ul.nav.navbar-nav.navbar-right
+    %li
+      -if user_signed_in?
+        %li= link_to 'Sign out', destroy_user_session_path, :method => :delete
+
