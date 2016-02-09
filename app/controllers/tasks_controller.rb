@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.update_attributes(safe_params)
+    @task.update(safe_params)
     render json: :ok
   end
 

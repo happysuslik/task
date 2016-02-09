@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :tasks
 
-  email_regex = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
-  validates :email, presence: true, uniqueness: true, format: { with: email_regex }
+  EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
+  validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX }
 
 end
