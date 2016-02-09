@@ -18,4 +18,4 @@
    gem 'devise'
 
  We can will see work the app in Heroku :
-   http://obscure-bayou-56599.herokuapp.com
+   https://safe-taiga-64968.herokuapp.com
