@@ -1,26 +1,33 @@
-var app = angular.module("app", ["ui.router", "restangular"]);
-app.config([
-  '$stateProvider',
-  '$urlRouterProvider',
-  '$locationProvider',
-  function($stateProvider, $urlRouterProvider, $locationProvider) {
-    $locationProvider.html5Mode({
-      enabled: true,
-      requireBase: false
-    });
+angular
+    .module("app", ['restangular', 'ui.router'])
+        .config([
+            '$stateProvider',
+            '$urlRouterProvider',
+            '$locationProvider',
+            function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-    $urlRouterProvider.otherwise('/home');
+                $stateProvider
+                    .state('/', {
+                      url: '/',
+                      templateUrl: 'client_views/tasks.html',
+                      controller: 'todoListCtrl'
+                    })
 
-    $stateProvider
-      .state('/home', {
-        url: '/home',
-        templateUrl: 'client_views/tasks.html',
-        controller: 'todoListCtrl'
-      })
-      .state('edit', {
-        url: '/:id/edit',
-        templateUrl: 'client_views/edit.html',
-        controller: 'editTodoListCtrl'
-      })
-  }
-]);
+                    .state('edit', {
+                      url: '/:id/edit',
+                      templateUrl: 'client_views/edit.html',
+                      controller: 'editTodoListCtrl'
+                    });
+
+                    //.state('/admin', {
+                    //  url: '/admin'
+                    //});
+
+                $urlRouterProvider.otherwise('/');
+
+                $locationProvider.html5Mode({
+                  enabled: true,
+                  requireBase: false
+                });
+            }
+        ]);

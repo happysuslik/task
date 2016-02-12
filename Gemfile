@@ -31,6 +31,8 @@ gem 'quiet_assets', group: :development
 gem "html2haml"
 gem 'selenium-webdriver'
 gem 'cancancan', '~> 1.10'
+gem 'rails_admin'
+gem 'jquery-rails'
 
 
 # Use ActiveModel has_secure_password

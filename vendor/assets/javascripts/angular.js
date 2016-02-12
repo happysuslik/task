@@ -7569,7 +7569,7 @@
                      *
                      * Also there is special case for Moz prefix starting with upper case letter.
                      *
-                     * For further information check out the guide on {@link guide/directive#matching-directives Matching Directives}
+                     * For further information check out the guide on {@link guide/directive#matching-directives Matching directives}
                      *
                      * @param {string} name Name to normalize
                      */
@@ -7755,7 +7755,7 @@
                      * @param {string} key Normalized key. (ie ngAttribute) .
                      * @param {function(interpolatedValue)} fn Function that will be called whenever
                      the interpolated value of the attribute changes.
-                     *        See the {@link guide/directive#text-and-attribute-bindings Directives} guide for more info.
+                     *        See the {@link guide/directive#text-and-attribute-bindings directives} guide for more info.
                      * @returns {function()} Returns a deregistration function for this observer.
                      */
                     $observe: function(key, fn) {

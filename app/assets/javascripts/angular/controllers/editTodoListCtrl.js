@@ -12,11 +12,11 @@ angular.module("app")
 
       $scope.save = function() {
         Restangular.copy($scope.task).save();
-        $state.go('/home');
+        $state.go('/');
       };
 
       $scope.cancel = function() {
-        $state.go('/home');
+        $state.go('/');
       };
 
       $scope.getError = function(error) {

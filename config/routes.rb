@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
+  mount RailsAdmin::Engine => '/admin'
   resources :tasks
   resources :client_views, only: [:show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'default#index'
+  root to: 'default#index'
   get '*path' => 'default#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
