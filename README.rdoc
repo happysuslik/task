@@ -16,6 +16,7 @@
 
  Used in authentication:
    gem 'devise'
+   gem 'cancancan', '~> 1.10'
 
  We can will see work the app in Heroku :
    https://safe-taiga-64968.herokuapp.com
