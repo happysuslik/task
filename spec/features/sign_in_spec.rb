@@ -7,14 +7,14 @@ describe 'the sign in processing' do
 
   it 'sign out', js: true do
     sign_in_with(@user.email, @user.password)
-    click_link 'Sign out'
+    click_button 'Sign out'
     expect(page).to have_content 'Sign up'
   end
 
   it 'sign me in', js: true do
     sign_in_with(@user.email, @user.password)
     expect(page).to have_content 'All Tasks'
-    click_link 'Sign out'
+    click_button 'Sign out'
   end
 
   it 'return to home page', js: true do

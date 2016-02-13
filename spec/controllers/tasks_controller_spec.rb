@@ -13,24 +13,36 @@ RSpec.describe TasksController, type: :controller do
       expect(response.status).to eq(200)
     end
 
-    it 'returns a task is user' do
+    it 'returns user`s tasks' do
       get :index
       expect(response.body).to eq("[#{task.to_json}]")
     end
   end
 
   describe '#show' do
-    it 'is a success' do
+    before do
       get :show, id: task.id
+    end
+    it 'is a success' do
       expect(response.status).to eq(200)
+    end
+
+    it 'renders task as json' do
       expect(response.body).to eq(task.to_json)
     end
   end
 
   describe '#create' do
+    before do
+      post :create, task: { text: 'ert', completed: false }
+    end
+
     it 'responds to POST' do
-      post :create, task: { text: task.text, completed: task.completed }
       expect(response.status).to eq(200)
+    end
+
+    it 'create task' do
+      expect(Task.find_by(text: 'ert', completed: false)).to_not be_nil
     end
   end
 
