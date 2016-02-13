@@ -1,16 +1,16 @@
 %div.navbar
   %div.navbar-header
-    %p.navbar-brand The Task
+    %div.navbar-brand The Task
   %ul.nav.navbar-nav
     = link_to('Home', root_path, class: "btn btn-info")
   %ul.nav.navbar-nav.navbar-right
     %li
       -if user_signed_in?
         %li
-          = button_to('Sign out', destroy_user_session_path,
+          %div= button_to('Sign out', destroy_user_session_path,
                       :method => :delete, class: "btn btn-info")
         -if can? "admin", :rails_admin
           %li
-            = button_to('Admin panel', rails_admin_path, class: "btn btn-info")
+            %div= link_to('Admin panel', rails_admin_path, class: "btn btn-info")
 
 
