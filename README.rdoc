@@ -16,6 +16,7 @@
 
  Used in authentication:
    gem 'devise'
+   gem 'omniauth-facebook'
    gem 'cancancan', '~> 1.10'
 
  We can will see work the app in Heroku :
