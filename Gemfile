@@ -33,6 +33,8 @@ gem 'selenium-webdriver'
 gem 'cancancan', '~> 1.10'
 gem 'rails_admin'
 gem 'jquery-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 
 # Use ActiveModel has_secure_password
