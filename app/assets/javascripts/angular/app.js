@@ -4,13 +4,25 @@ angular
             '$stateProvider',
             '$urlRouterProvider',
             '$locationProvider',
-            function($stateProvider, $urlRouterProvider, $locationProvider) {
+            function($stateProvider, $urlRouterProvider) {
 
                 $stateProvider
+                    //.state('/', {
+                    //  url: '/',
+                    //  templateUrl: 'client_views/tasks.html',
+                    //  controller: 'todoListCtrl'
+                    //})
+
                     .state('/', {
                       url: '/',
-                      templateUrl: 'client_views/tasks.html',
-                      controller: 'todoListCtrl'
+                      templateUrl: 'client_views/index.html',
+                      controller: 'projectCtrl'
+                    })
+
+                    .state('project/edit', {
+                      url: '/:id/edit',
+                      templateUrl: 'client_views/editProject.html',
+                      controller: 'editProjectCtrl'
                     })
 
                     .state('edit', {
@@ -19,15 +31,7 @@ angular
                       controller: 'editTodoListCtrl'
                     });
 
-                    //.state('/admin', {
-                    //  url: '/admin'
-                    //});
-
                 $urlRouterProvider.otherwise('/');
 
-                $locationProvider.html5Mode({
-                  //enabled: true,
-                  //requireBase: false
-                });
             }
         ]);

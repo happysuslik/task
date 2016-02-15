@@ -1,0 +1,72 @@
+
+%h2.text-center
+  SIMPLE TODO LISTS
+  %h4.text-center
+    From Ruby Garage
+%div.row
+  %div.col-md-6.col-md-offset-3
+    %form{name: "myForm", novalidate: "true", class: "myForm"}
+      %div.input-group
+        %span.input-group-addon
+          %span.glyphicon
+        %input.form-control{name: "uProject", type: "text",
+                                           placeholder: "Input your task",
+                                           "ng-model": "project.title",
+                                           "ng-required": "true"}
+
+        %span.input-group-btn
+          %button.btn.btn-default{"ng-click": "addProject(project)", "ng-disabled": "myForm.$invalid"}
+            Add
+
+    %div.alert-danger{"ng-show": "myForm.uProject.$invalid" && "myForm.uProject.$dirty"}
+      {{getError(myForm.uProject.$error)}}
+    %br
+
+    %div{"ng-repeat": "project in projects"}
+      %div.panel.panel-primary
+        %div.panel-heading
+          %div.row
+            %button.btn.btn-primary.col-md-1.glyphicon.glyphicon-pencil
+            %h4.col-md-9 {{project.title}}
+
+            %button.btn.btn-primary.col-md-1.glyphicon.glyphicon-pencil{"ng-click": "edit(project)"}
+            %button.btn.btn-primary.col-md-1.glyphicon.glyphicon-trash{"ng-click": "destroy(project)"}
+
+        -#Task
+        %div{"ng-controller": "todoListCtrl"}
+          %div.panel-body
+            %div.row
+              %form{name: "myForm", novalidate: "true", class: "myForm"}
+                %div.input-group
+                  %span.input-group-addon
+                    %input{type: "checkbox", "ng-model": "task.completed", name: "uCheckBox"}
+
+                  %input.form-control{name: "uTask", type: "text",
+                                                     placeholder: "Input your task",
+                                                     "ng-model": "task.text",
+                                                     "ng-required": "true"}
+
+                  %span.input-group-btn
+                    %button.btn.btn-success{"ng-click": "addTask(task)", "ng-disabled": "myForm.$invalid"}
+                      Add Task
+
+            %div.alert-danger{"ng-show": "myForm.uTask.$invalid" && "myForm.uTask.$dirty"}
+              {{getError(myForm.uTask.$error)}}
+
+          %div.input-group{"ng-repeat": "task in tasks"}
+            %span.input-group-addon
+              %input{type: "checkbox", name: "tCheckBox", "ng-model": "task.completed", "ng-click": "editCheckBox(task)"}
+
+            %span.form-control{id: "viewTask","ng-class": "task.completed === true ? 'green' : ''"}
+              {{task.text}}
+
+            %div.input-group-btn
+              %button.btn.btn-default{"ng-click": ""}
+                Up and Down
+              %button.btn.btn-default{"ng-click": "destroy(task)"}
+                Destroy
+              %button.btn.btn-default{"ng-click": "edit(task)"}
+                Edit
+
+
+

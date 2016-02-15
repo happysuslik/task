@@ -17,4 +17,6 @@
 //= require angular
 //= require angular-ui-router
 //= require restangular
+//= require bootstrap
+//= require bootstrap.min
 //= require_tree .

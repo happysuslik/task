@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 20160215110458) do
   enable_extension "plpgsql"
 
   create_table "projects", force: :cascade do |t|
-    t.string  "title"
-    t.integer "user_id"
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
