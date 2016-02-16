@@ -2,13 +2,15 @@
  * Created by fod on 02.01.16.
  */
 angular.module("app")
-  .controller("todoListCtrl", [
+  .controller("taskCtrl", [
     '$scope',
     'Restangular',
     '$state',
-    function($scope, Restangular, $state) {
+    'projectId',
+    function($scope, Restangular, $state, projectId) {
+
       $scope.refresh = function() {
-        Restangular.all('tasks').getList().then(function(tasks) {
+        Restangular.one('projects', $scope.project.id).all('tasks').getList().then(function(tasks) {
           $scope.tasks = tasks;
         });
       };
@@ -21,17 +23,19 @@ angular.module("app")
         }
       };
 
-      $scope.addTask = function(task) {
+      $scope.addTask = function(task, project) {
+        $scope.project = project;
         $scope.task = {};
-        $scope.tasks.post(task).then(function(response) {
+        $scope.tasks.post(task, task.project_id = project.id).then(function(response) {
           $scope.tasks.push(response);
         });
         $scope.task.text = '';
         $scope.myForm.$setPristine();
+
       };
 
       $scope.destroy = function(task) {
-        Restangular.one('tasks', task.id).remove();
+        Restangular.one('projects', $scope.project.id).one('tasks', task.id).remove();
         $scope.tasks.splice($scope.tasks.indexOf(task), 1);
       };
 
@@ -39,9 +43,22 @@ angular.module("app")
         Restangular.copy(task).save();
       };
 
-      $scope.edit = function(task) {
+      $scope.edit = function(task, project) {
+        projectId.updateValue(project.id);
         $state.go('edit', task);
+
+      };
+
+      $scope.save = function() {
+        Restangular.copy($scope.task).save();
+        $state.go('/');
+      };
+
+      $scope.cancel = function() {
+        $state.go('/');
       };
 
       $scope.refresh();
+
   }]);
+

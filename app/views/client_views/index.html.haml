@@ -33,7 +33,7 @@
             %button.btn.btn-primary.col-md-1.glyphicon.glyphicon-trash{"ng-click": "destroy(project)"}
 
         -#Task
-        %div{"ng-controller": "todoListCtrl"}
+        %div{"ng-controller": "taskCtrl"}
           %div.panel-body
             %div.row
               %form{name: "myForm", novalidate: "true", class: "myForm"}
@@ -47,7 +47,7 @@
                                                      "ng-required": "true"}
 
                   %span.input-group-btn
-                    %button.btn.btn-success{"ng-click": "addTask(task)", "ng-disabled": "myForm.$invalid"}
+                    %button.btn.btn-success{"ng-click": "addTask(task, project)", "ng-disabled": "myForm.$invalid"}
                       Add Task
 
             %div.alert-danger{"ng-show": "myForm.uTask.$invalid" && "myForm.uTask.$dirty"}
@@ -60,12 +60,13 @@
             %span.form-control{id: "viewTask","ng-class": "task.completed === true ? 'green' : ''"}
               {{task.text}}
 
+
             %div.input-group-btn
               %button.btn.btn-default{"ng-click": ""}
                 Up and Down
               %button.btn.btn-default{"ng-click": "destroy(task)"}
                 Destroy
-              %button.btn.btn-default{"ng-click": "edit(task)"}
+              %button.btn.btn-default{"ng-click": "edit(task, project)"}
                 Edit
 
 

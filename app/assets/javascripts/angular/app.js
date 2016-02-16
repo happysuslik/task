@@ -7,11 +7,6 @@ angular
             function($stateProvider, $urlRouterProvider) {
 
                 $stateProvider
-                    //.state('/', {
-                    //  url: '/',
-                    //  templateUrl: 'client_views/tasks.html',
-                    //  controller: 'todoListCtrl'
-                    //})
 
                     .state('/', {
                       url: '/',
@@ -20,18 +15,29 @@ angular
                     })
 
                     .state('project/edit', {
-                      url: '/:id/edit',
+                      url: '/project/:id/edit',
                       templateUrl: 'client_views/editProject.html',
                       controller: 'editProjectCtrl'
                     })
 
                     .state('edit', {
-                      url: '/:id/edit',
+                      url: '/task/:id/edit',
                       templateUrl: 'client_views/edit.html',
-                      controller: 'editTodoListCtrl'
+                      controller: 'editTaskCtrl'
                     });
 
                 $urlRouterProvider.otherwise('/');
 
             }
-        ]);
+        ])
+        .factory('projectId', function(){
+          var value = '';
+          return {
+            updateValue: function(newValue) {
+              value = newValue;
+            },
+            getValue: function() {
+              return value;
+            }
+          }
+        });

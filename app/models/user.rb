@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :rememberable, :validatable, :omniauthable,
          :omniauth_providers => [:facebook]
 
-  has_many :projects
+  has_many :projects, dependent: :destroy
 
   EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
   validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX }

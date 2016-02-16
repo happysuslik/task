@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   load_and_authorize_resource param_method: :safe_params
 
   def index
-    render json: current_user.tasks
+    @tasks = Project.find(params[:project_id]).tasks
+    render json: @tasks
   end
 
   def show
@@ -10,7 +11,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_user.tasks.create(safe_params)
+    @task = Task.create(safe_params)
     render json: @task
   end
 
@@ -27,7 +28,7 @@ class TasksController < ApplicationController
   private
 
   def safe_params
-    params.require(:task).permit(:text, :completed)
+    params.require(:task).permit(:text, :completed, :project_id)
   end
 
 end

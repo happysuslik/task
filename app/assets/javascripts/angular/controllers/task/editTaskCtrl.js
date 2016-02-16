@@ -2,13 +2,15 @@
  * Created by fod on 11.01.16.
  */
 angular.module("app")
-  .controller("editTodoListCtrl", [
+  .controller("editTaskCtrl", [
     '$scope',
     'Restangular',
     '$stateParams',
     '$state',
-    function($scope, Restangular, $stateParams, $state) {
-      $scope.task = Restangular.one('tasks', $stateParams.id).get().$object;
+    'projectId',
+    function($scope, Restangular, $stateParams, $state, projectId) {
+      $scope.project_id = projectId.getValue();
+      $scope.task = Restangular.one('projects', $scope.project_id).one('tasks', $stateParams.id).get().$object;
 
       $scope.save = function() {
         Restangular.copy($scope.task).save();
