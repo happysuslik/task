@@ -47,6 +47,15 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# source 'https://rails-assets.org' do
+#   gem 'rails-assets-bootstrap'
+#   gem 'rails-assets-angular'
+#   gem 'rails-assets-leaflet'
+# end
+gem "therubyracer"
+gem "less-rails"
+gem 'twitter-bootstrap-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

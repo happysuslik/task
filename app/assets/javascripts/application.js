@@ -9,14 +9,13 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+//= require_self
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require turbolinks
 //= require underscore
 //= require angular
 //= require angular-ui-router
 //= require restangular
-//= require bootstrap
-//= require bootstrap.min
 //= require_tree .

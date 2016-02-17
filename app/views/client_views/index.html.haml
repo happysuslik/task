@@ -26,11 +26,11 @@
       %div.panel.panel-primary
         %div.panel-heading
           %div.row
-            %button.btn.btn-primary.col-md-1.glyphicon.glyphicon-pencil
-            %h4.col-md-9 {{project.title}}
+            %span.col-md-1.glyphicon.glyphicon-calendar
+            %span.h4.col-md-9 {{project.title}}
 
-            %button.btn.btn-primary.col-md-1.glyphicon.glyphicon-pencil{"ng-click": "edit(project)"}
-            %button.btn.btn-primary.col-md-1.glyphicon.glyphicon-trash{"ng-click": "destroy(project)"}
+            %span.col-md-1.glyphicon.glyphicon-pencil{"ng-click": "edit(project)"}
+            %span.col-md-1.glyphicon.glyphicon-trash{"ng-click": "destroy(project)"}
 
         -#Task
         %div{"ng-controller": "taskCtrl"}
@@ -53,21 +53,21 @@
             %div.alert-danger{"ng-show": "myForm.uTask.$invalid" && "myForm.uTask.$dirty"}
               {{getError(myForm.uTask.$error)}}
 
-          %div.input-group{"ng-repeat": "task in tasks"}
-            %span.input-group-addon
-              %input{type: "checkbox", name: "tCheckBox", "ng-model": "task.completed", "ng-click": "editCheckBox(task)"}
+          %div.well.well-lg{"ng-repeat": "task in tasks"}
+            %div.row
+              %input.col-md-1{type: "checkbox", name: "tCheckBox", "ng-model": "task.completed", "ng-click": "editCheckBox(task)"}
 
-            %span.form-control{id: "viewTask","ng-class": "task.completed === true ? 'green' : ''"}
-              {{task.text}}
+              %span.col-md-8{id: "viewTask","ng-class": "task.completed === true ? 'green' : ''"}
+                {{task.text}}
 
 
-            %div.input-group-btn
-              %button.btn.btn-default{"ng-click": ""}
-                Up and Down
-              %button.btn.btn-default{"ng-click": "destroy(task)"}
-                Destroy
-              %button.btn.btn-default{"ng-click": "edit(task, project)"}
-                Edit
+              %span.glyphicon.glyphicon-retweet.col-md-1{"ng-click": ""}
+
+              %span.glyphicon.glyphicon-pencil.col-md-1{"ng-click": "edit(task, project)"}
+
+              %span.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(task)"}
+
+
 
 
 
