@@ -6,8 +6,8 @@ angular.module("app")
     '$scope',
     'Restangular',
     '$state',
-    'projectId',
-    function($scope, Restangular, $state, projectId) {
+    'Id',
+    function($scope, Restangular, $state, Id) {
 
       $scope.refresh = function() {
         Restangular.one('projects', $scope.project.id).all('tasks').getList().then(function(tasks) {
@@ -44,18 +44,9 @@ angular.module("app")
       };
 
       $scope.edit = function(task, project) {
-        projectId.updateValue(project.id);
+        Id.updateValue(project.id);
         $state.go('edit', task);
 
-      };
-
-      $scope.save = function() {
-        Restangular.copy($scope.task).save();
-        $state.go('/');
-      };
-
-      $scope.cancel = function() {
-        $state.go('/');
       };
 
       $scope.refresh();

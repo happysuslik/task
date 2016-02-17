@@ -12,6 +12,7 @@ class Ability
     elsif user.role == "user"
       can :manage, Task
       can :manage, Project
+      can :manage, Comment
       cannot :access, :rails_admin
       cannot :dashboard
     end

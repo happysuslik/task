@@ -10,7 +10,7 @@
         %span.input-group-addon
           %span.glyphicon
         %input.form-control{name: "uProject", type: "text",
-                                           placeholder: "Input your task",
+                                           placeholder: "Input your Project",
                                            "ng-model": "project.title",
                                            "ng-required": "true"}
 
@@ -18,8 +18,9 @@
           %button.btn.btn-default{"ng-click": "addProject(project)", "ng-disabled": "myForm.$invalid"}
             Add
 
-    %div.alert-danger{"ng-show": "myForm.uProject.$invalid" && "myForm.uProject.$dirty"}
-      {{getError(myForm.uProject.$error)}}
+    %div{"ng-show": "myForm.uProject.$invalid" && "myForm.uProject.$dirty"}
+      %h4.text-danger
+        {{getError(myForm.uProject.$error)}}
     %br
 
     %div{"ng-repeat": "project in projects"}
@@ -50,8 +51,9 @@
                     %button.btn.btn-success{"ng-click": "addTask(task, project)", "ng-disabled": "myForm.$invalid"}
                       Add Task
 
-            %div.alert-danger{"ng-show": "myForm.uTask.$invalid" && "myForm.uTask.$dirty"}
-              {{getError(myForm.uTask.$error)}}
+            %div{"ng-show": "myForm.uTask.$invalid" && "myForm.uTask.$dirty"}
+              %h4.text-danger
+                {{getError(myForm.uTask.$error)}}
 
           %div.well.well-lg{"ng-repeat": "task in tasks"}
             %div.row
@@ -61,7 +63,7 @@
                 {{task.text}}
 
 
-              %span.glyphicon.glyphicon-retweet.col-md-1{"ng-click": ""}
+              %span.glyphicon.glyphicon-sort.col-md-1{"ng-click": ""}
 
               %span.glyphicon.glyphicon-pencil.col-md-1{"ng-click": "edit(task, project)"}
 

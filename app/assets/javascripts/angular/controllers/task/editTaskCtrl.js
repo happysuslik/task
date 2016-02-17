@@ -7,10 +7,11 @@ angular.module("app")
     'Restangular',
     '$stateParams',
     '$state',
-    'projectId',
-    function($scope, Restangular, $stateParams, $state, projectId) {
-      $scope.project_id = projectId.getValue();
+    'Id',
+    function($scope, Restangular, $stateParams, $state, Id) {
+      $scope.project_id = Id.getValue();
       $scope.task = Restangular.one('projects', $scope.project_id).one('tasks', $stateParams.id).get().$object;
+      Id.updateValue($stateParams.id);
 
       $scope.save = function() {
         Restangular.copy($scope.task).save();

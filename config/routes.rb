@@ -3,8 +3,14 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :projects do
-    resources :tasks
+    resources :tasks do
+    end
   end
+
+  resources :tasks do
+    resources :comments, only: [:index, :create, :destroy]
+  end
+
   resources :client_views, only: [:show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

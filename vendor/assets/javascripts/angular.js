@@ -8169,7 +8169,7 @@
                                 }
                             } catch (e) {
                                 // turns out that under some circumstances IE9 throws errors when one attempts to read
-                                // comment's node value.
+                                // comment_of_task's node value.
                                 // Just ignore it and continue. (Can't seem to reproduce in test case.)
                             }
                             break;
@@ -8655,8 +8655,8 @@
 
                             var controllerInstance = $controller(controller, locals, true, directive.controllerAs);
 
-                            // For directives with element transclusion the element is a comment,
-                            // but jQuery .data doesn't support attaching data to comment nodes as it's hard to
+                            // For directives with element transclusion the element is a comment_of_task,
+                            // but jQuery .data doesn't support attaching data to comment_of_task nodes as it's hard to
                             // clean up (http://bugs.jquery.com/ticket/8335).
                             // Instead, we save the controllers for the element in a local hash and attach to .data
                             // later, once we have the actual element.
@@ -8835,7 +8835,7 @@
                  *   * `E`: element name
                  *   * `A': attribute
                  *   * `C`: class
-                 *   * `M`: comment
+                 *   * `M`: comment_of_task
                  * @returns {boolean} true if directive was added.
                  */
                 function addDirective(tDirectives, name, location, maxPriority, ignoreDirective, startAttrName,
@@ -27397,7 +27397,7 @@
                 var unknownOption_ = unknownOption && unknownOption[0];
 
                 // We cannot rely on the extracted empty option being the same as the compiled empty option,
-                // because the compiled empty option might have been replaced by a comment because
+                // because the compiled empty option might have been replaced by a comment_of_task because
                 // it had an "element" transclusion directive on it (such as ngIf)
                 if (emptyOption_ || unknownOption_) {
                     while (current &&
@@ -28172,7 +28172,7 @@
                     $scope.$watchCollection(rhs, function ngRepeatAction(collection) {
                         var index, length,
                             previousNode = $element[0],     // node that cloned nodes should be inserted after
-                                                            // initialized to the comment node anchor
+                                                            // initialized to the comment_of_task node anchor
                             nextNode,
                         // Same as lastBlockMap but it has the current state. It will become the
                         // lastBlockMap on the next iteration.
@@ -28622,7 +28622,7 @@
             multiElement: true,
             link: function(scope, element, attr) {
                 scope.$watch(attr.ngHide, function ngHideWatchAction(value) {
-                    // The comment inside of the ngShowDirective explains why we add and
+                    // The comment_of_task inside of the ngShowDirective explains why we add and
                     // remove a temporary class for the show/hide animation
                     $animate[value ? 'addClass' : 'removeClass'](element,NG_HIDE_CLASS, {
                         tempClasses: NG_HIDE_IN_PROGRESS_CLASS

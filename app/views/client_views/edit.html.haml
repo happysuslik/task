@@ -1,20 +1,49 @@
 %header.text-center
   %h3 Edit Task
-%body.row
-  %div.col-md-6.col-md-offset-3
-    %form{name: "formEdit", novalidate: "true"}
-      %div.input-group
-        %span.input-group-addon
-          %input{type: "checkbox", "ng-model": "task.completed", name: "editCheckBox"}
-        %input.form-control{type: "text", name: "input",
-                                          placeholder: "Input your task",
-                                          "ng-model": "task.text",
-                                          "ng-class": "task.completed === true ? 'green' : ''",
-                                          "ng-required": "true"}
-        %span.input-group-btn
-          %button.btn.btn-default{"ng-click": "save()", "ng-disabled": "formEdit.$invalid"}
-            Save
-          %button.btn.btn-default{"ng-click": "cancel()"}
-            Cancel
-      %div.alert-danger{"ng-show": "formEdit.input.$invalid"}
-        {{getError(formEdit.input.$error)}}
+%body
+  %div.row
+    %div.col-md-6.col-md-offset-3
+      %form{name: "formEdit", novalidate: "true"}
+        %div.input-group
+          %span.input-group-addon
+            %input{type: "checkbox", "ng-model": "task.completed", name: "editCheckBox"}
+          %input.form-control{type: "text", name: "input",
+                                            placeholder: "Input your task",
+                                            "ng-model": "task.text",
+                                            "ng-class": "task.completed === true ? 'green' : ''",
+                                            "ng-required": "true"}
+          %span.input-group-btn
+            %button.btn.btn-default{"ng-click": "save()", "ng-disabled": "formEdit.$invalid"}
+              Save
+            %button.btn.btn-default{"ng-click": "cancel()"}
+              Cancel
+        %div{"ng-show": "formEdit.input.$invalid"}
+          %h4.text-danger
+            {{getError(formEdit.input.$error)}}
+        %br
+
+  %div{"ng-controller": "commentCtrl"}
+    %div.breadcrumb
+      Comments
+      %div{"ng-repeat": "comment in comments"}
+        %div.well.well-lg
+          %div.row
+            %span.col-md-11
+              {{comment.description}}
+            %span.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(comment)"}
+
+    %div.well.well-lg
+      %form{"name": "commentForm", novalidate: "true", class: "myForm"}
+        %div.row
+          %input.well.col-md-12{"type": "text", "placeholder": "Your comment",
+                                "ng-model": "comment.description",
+                                "name": "descriptionF", "ng-required": "true"}
+
+          %div{"ng-show": "commentForm.descriptionF.$invalid" && "commentForm.descriptionF.$dirty"}
+            %h4.text-danger
+              {{getError(commentForm.descriptionF.$error)}}
+          %br
+        %button.btn.btn-default{"ng-click": "addComment(comment)", "ng-disabled": "commentForm.$invalid"}
+          Add a comment
+
+
