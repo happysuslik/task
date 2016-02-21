@@ -19,6 +19,6 @@ class CommentsController < ApplicationController
   private
 
   def safe_params
-    params.require(:comment).permit(:description, :task_id)
+    params.require(:comment).permit(:description, :task_id, :avatar)
   end
 end

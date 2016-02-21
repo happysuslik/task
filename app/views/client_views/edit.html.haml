@@ -43,6 +43,30 @@
             %h4.text-danger
               {{getError(commentForm.descriptionF.$error)}}
           %br
+        %input{type: "file", "nv-file-select": "", "uploader": "uploader", "multiple": ""}
+
+        %div
+          %h2
+            The queue. Length: {{ uploader.queue.length }}
+          %ul
+            %li{"ng-repeat": "item in uploader.queue"}
+              %div Name: {{ item.file.name }}
+              %div Size: {{ item.file.size/1024/1024|number:2 }} Mb
+              %div{"ng-show": "uploader.isHTML5"}
+                Progress: {{ item.progress }}
+                %div{class: "item-progress-box"}
+                  %div{class: "item-progress", "ng-style": "{ 'width': item.progress + '%' }"}
+
+              -#%div{"ng-if": "controller.isImage(item._file)"}
+              -#  Thumbnail (only images):
+              -#    %div{"ng-thumb": "{ file: item._file, height: 100 }"}
+              %div
+                %button{"ng-click": "item.remove()"}
+                  Remove
+        %div
+          %div
+            Total progress: {{ uploader.progress }}
+
         %button.btn.btn-default{"ng-click": "addComment(comment)", "ng-disabled": "commentForm.$invalid"}
           Add a comment
 

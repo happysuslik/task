@@ -18,4 +18,5 @@
 //= require angular
 //= require angular-ui-router
 //= require restangular
+//= require angularjs-file-upload
 //= require_tree .

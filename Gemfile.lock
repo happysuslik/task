@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    angularjs-file-upload-rails (1.1.6)
     arel (6.0.3)
     autoprefixer-rails (6.3.3)
       execjs
@@ -300,6 +301,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-file-upload-rails (~> 1.1.6)
   bootstrap-sass (~> 3.3.6)
   byebug
   cancancan (~> 1.10)
