@@ -31,6 +31,9 @@ angular.module("app")
           $scope.files.push(item.file);
         });
 
+        //$scope.files = angular.toJson($scope.files);
+        //console.log($scope.files);
+
         $scope.comments.post(comment, comment.task_id = $scope.task_id, comment.avatars = $scope.files).then(function(responce) {
           $scope.comments.push(responce);
         });
