@@ -8,11 +8,7 @@ class CommentsController < ApplicationController
 
   def create
 
-    @comment = Comment.new()
-    @comment.description = params[:description]
-    @comment.task_id = params[:task_id]
-    @comment.avatars = { images: ["020300200303020300303"]}
-    @comment.save
+    @comment = Comment.create(safe_params)
     render json: @comment
   end
 
@@ -24,18 +20,6 @@ class CommentsController < ApplicationController
   private
 
   def safe_params
-    params.require(:comment).permit(:description, :task_id)
+    params.require(:comment).permit(:description, :task_id, {avatars: [:lastModifiedDate, :size, :type, :name]})
   end
 end
-
-
-
-
-
-#     "comment"=>{
-#         "description"=>"q",
-#         "task_id"=>"321",
-#         "avatars"=>[
-#             {"lastModifiedDate"=>"2016-01-02T08:23:35.946Z", "size"=>22401, "type"=>"image/jpeg", "name"=>"1.jpg"}
-#     ]}
-# }
