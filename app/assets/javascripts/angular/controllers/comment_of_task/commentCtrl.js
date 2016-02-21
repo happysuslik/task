@@ -25,18 +25,17 @@ angular.module("app")
       $scope.addComment = function(comment) {
 
         $scope.comment = {};
-
         $scope.files = [];
+
         angular.forEach($scope.uploader.queue, function(item) {
           $scope.files.push(item.file);
         });
-
-        console.log($scope.files);
 
         $scope.comments.post(comment, comment.task_id = $scope.task_id, comment.avatars = $scope.files).then(function(responce) {
           $scope.comments.push(responce);
         });
         $scope.comment.description = '';
+        $scope.uploader.clearQueue();
         $scope.commentForm.$setPristine();
       };
 
