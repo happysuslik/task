@@ -32,7 +32,6 @@ gem "html2haml"
 gem 'selenium-webdriver'
 gem 'cancancan', '~> 1.10'
 gem 'rails_admin'
-gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -47,15 +46,10 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# source 'https://rails-assets.org' do
-#   gem 'rails-assets-bootstrap'
-#   gem 'rails-assets-angular'
-#   gem 'rails-assets-leaflet'
-# end
 gem "therubyracer"
 gem "less-rails"
 gem 'twitter-bootstrap-rails'
-gem 'carrierwave'
+gem 'carrierwave', :git => "git://github.com/carrierwaveuploader/carrierwave.git", :branch => "master"
 gem 'angularjs-file-upload-rails', '~> 1.1.6'
 
 group :development, :test do
