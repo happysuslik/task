@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219200144) do
+ActiveRecord::Schema.define(version: 20160221002433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160219200144) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "avatar"
+    t.json     "avatars"
   end
 
   add_index "comments", ["task_id"], name: "index_comments_on_task_id", using: :btree

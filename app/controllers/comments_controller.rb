@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.create(safe_params)
+    @comment = Comment.create
     render json: @comment
   end
 
@@ -19,6 +19,6 @@ class CommentsController < ApplicationController
   private
 
   def safe_params
-    params.require(:comment).permit(:description, :task_id, :avatar)
+    params.require(:comment).permit(:description, :task_id, {avatars: []})
   end
 end
