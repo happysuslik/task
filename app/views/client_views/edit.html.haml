@@ -26,6 +26,8 @@
     %div.breadcrumb
       Comments
       %div{"ng-repeat": "comment in comments"}
+        %img.img-rounded{"src": "{{comment.avatar.url}}"}
+        %br
         %div.well.well-lg
           %div.row
             %span.col-md-11
@@ -43,36 +45,17 @@
             %h4.text-danger
               {{getError(commentForm.descriptionF.$error)}}
           %br
-        %input{type: "file", "nv-file-select": "", "uploader": "uploader", "multiple": ""}
-
-        %div{"ng-if": "uploader.queue.length > 0"}
-          %h4
-            The queue. Length: {{ uploader.queue.length }}
-          %table.table
-            %thead
-              %tr
-                %th Image
-                %th{"width": "50%"} Name
-                %th{"ng-show": "uploader.isHTML5"} Size
-                %th Actions
-            %tbody
-              %tr{"ng-repeat": "item in uploader.queue"}
-                %td
-                  %strong
-                    %div{"ng-if": "controller.isImage(item._file)"}
-                      %div{"ng-thumb": "{ file: item._file, height: 100 }"}
-                %td
-                  %strong
-                    {{ item.file.name }}
-                %td{"ng-show": "uploader.isHTML5"}
-                  {{ item.file.size/1024/1024|number:2 }} Mb
-
-                %td
-                  %button.btn.btn-danger{"ng-click": "item.remove()"}
-                    Remove
+        %button.btn.btn-default{type: "file", "ngf-select": "", "ng-model": "picFile",
+                               "ngf-accept": "'image/*'", "ngf-max-size": "2MB",
+                               "ngf-min-height": "100", "ngf-resize": "{width: 100, height: 100}"}
+          Select file
         %br
-
-        %button.btn.btn-success{"ng-click": "addComment(comment)", "ng-disabled": "commentForm.$invalid"}
+        %div{"ng-if": "picFile"}
+          %img{"ngf-thumbnail": "picFile", "class": "thumb"}
+            %button.btn.btn-danger{"ng-click": "remove()"}
+              Remove
+        %br
+        %button.btn.btn-success{"ng-click": "upload(picFile)", "ng-disabled": "commentForm.$invalid"}
           Add a comment
 
 

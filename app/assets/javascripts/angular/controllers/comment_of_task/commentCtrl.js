@@ -6,36 +6,30 @@ angular.module("app")
     '$scope',
     'Id',
     'Restangular',
-    'FileUploader',
-    function($scope, Id, Restangular, FileUploader) {
+    'Upload',
+    function($scope, Id, Restangular, Upload) {
       $scope.task_id = Id.getValue();
       Restangular.one('tasks', $scope.task_id).all('comments').getList().then(function(comments) {
         $scope.comments = comments;
       });
 
-      $scope.uploader = new FileUploader();
+      $scope.upload = function (file) {
 
-      var controller = $scope.controller = {
-        isImage: function(item) {
-          var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-          return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-        }
+          Upload.upload({
+            url: $scope.comments.getRestangularUrl(),
+            method: 'POST',
+            fields: { 'comment[description]': $scope.comment.description, 'comment[task_id]': $scope.task_id, 'comment[avatar]' : file},
+            file: file
+          }).then(function (response) {
+               $scope.comments.push(response.data);
+          });
+        $scope.comment.description = '';
+        $scope.picFile = '';
+        $scope.commentForm.$setPristine();
       };
 
-      $scope.addComment = function(comment) {
-
-        $scope.comment = {};
-        $scope.files = [];
-
-        angular.forEach($scope.uploader.queue, function(item) {
-          $scope.files.push(item.file);
-        });
-        
-        $scope.comments.post(comment, comment.task_id = $scope.task_id, comment.avatars = $scope.files).then(function(responce) {
-          $scope.comments.push(responce);
-        });
-        $scope.comment.description = '';
-        $scope.uploader.clearQueue();
+      $scope.remove = function() {
+        $scope.picFile = '';
         $scope.commentForm.$setPristine();
       };
 

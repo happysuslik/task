@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :task
-  mount_uploaders :avatars, AvatarUploader
+  mount_uploader :avatar, AvatarUploader
 
   validates :description, presence: true
 end

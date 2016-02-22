@@ -50,7 +50,8 @@ gem "therubyracer"
 gem "less-rails"
 gem 'twitter-bootstrap-rails'
 gem 'carrierwave', :git => "git://github.com/carrierwaveuploader/carrierwave.git", :branch => "master"
-gem 'angularjs-file-upload-rails', '~> 1.1.6'
+gem 'rmagick', '~> 2.15'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

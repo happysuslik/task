@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160221155154) do
     t.integer  "task_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.json     "avatars"
+    t.string   "avatar"
   end
 
   add_index "comments", ["task_id"], name: "index_comments_on_task_id", using: :btree
