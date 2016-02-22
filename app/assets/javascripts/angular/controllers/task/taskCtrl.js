@@ -7,7 +7,8 @@ angular.module("app")
     'Restangular',
     '$state',
     'Id',
-    function($scope, Restangular, $state, Id) {
+    '$timeout',
+    function($scope, Restangular, $state, Id, $timeout) {
 
       $scope.refresh = function() {
         Restangular.one('projects', $scope.project.id).all('tasks').getList().then(function(tasks) {
@@ -31,12 +32,57 @@ angular.module("app")
         });
         $scope.task.text = '';
         $scope.myForm.$setPristine();
+      };
 
+      $scope.task_result = function() {
+        $scope.result = [];
+        angular.forEach($scope.tasks, function(obj) {
+          $scope.result.push(obj);
+        });
+
+      };
+
+      $scope.up = function(task) {
+        $scope.task_result();
+        if (task.priority != 0) {
+          angular.forEach($scope.result, function(obj) {
+            if(obj.priority == task.priority - 1) {
+              $scope.task_down = obj;
+            }
+          });
+          $scope.task_down.priority += 1;
+          $timeout(function() {
+            Restangular.copy($scope.task_down).save();
+          }, 250);
+          task.priority -= 1;
+          Restangular.copy(task).save();
+        }
+      };
+
+      $scope.down = function(task) {
+        $scope.task_result();
+        if (task.priority != $scope.result.length - 1) {
+          angular.forEach($scope.result, function(obj) {
+            if(obj.priority == task.priority + 1 ) {
+              $scope.task_up = obj;
+            }
+          });
+          $scope.task_up.priority -= 1;
+          $timeout(function() {
+            Restangular.copy($scope.task_up).save();
+          }, 250);
+          task.priority += 1;
+          Restangular.copy(task).save();
+        }
       };
 
       $scope.destroy = function(task) {
         Restangular.one('projects', $scope.project.id).one('tasks', task.id).remove();
         $scope.tasks.splice($scope.tasks.indexOf(task), 1);
+        $timeout(function() {
+          $scope.refresh();
+        }, 250);
+
       };
 
       $scope.editCheckBox = function(task) {

@@ -1,5 +1,5 @@
 angular
-    .module("app", ['restangular', 'ui.router', 'ngFileUpload'])
+    .module("app", ['restangular', 'ui.router', 'ngFileUpload', 'ngAnimate'])
         .config([
             '$stateProvider',
             '$urlRouterProvider',

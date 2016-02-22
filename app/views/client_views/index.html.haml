@@ -55,15 +55,17 @@
               %h4.text-danger
                 {{getError(myForm.uTask.$error)}}
 
-          %div.well.well-lg{"ng-repeat": "task in tasks"}
+          %div.well.well-lg{"ng-repeat": "task in tasks | orderBy: 'priority'", "ng-class": "task.completed === true ? 'green' : ''"}
             %div.row
               %input.col-md-1{type: "checkbox", name: "tCheckBox", "ng-model": "task.completed", "ng-click": "editCheckBox(task)"}
 
-              %span.col-md-8{id: "viewTask","ng-class": "task.completed === true ? 'green' : ''"}
+              %span.col-md-7{id: "viewTask"}
                 {{task.text}}
 
 
-              %span.glyphicon.glyphicon-sort.col-md-1{"ng-click": ""}
+              %span.glyphicon.glyphicon-arrow-up.col-md-1{"ng-click": "up(task)"}
+
+              %span.glyphicon.glyphicon-arrow-down.col-md-1{"ng-click": "down(task)"}
 
               %span.glyphicon.glyphicon-pencil.col-md-1{"ng-click": "edit(task, project)"}
 

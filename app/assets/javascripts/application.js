@@ -19,4 +19,5 @@
 //= require angular-ui-router
 //= require restangular
 //= require ng-file-upload-all
+//= require angular-animate.min
 //= require_tree .
