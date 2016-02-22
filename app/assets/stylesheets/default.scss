@@ -1,3 +1,26 @@
 // Place all the styles related to the default controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div.navbar-brand, label, h4, h2, h3 {
+  color: #BBBBBB;
+}
+
+body{
+  background-image: url('/assets/background.jpg');
+}
+
+$color_success: rgba(252, 20, 7, 0.97);
+
+.form-group.text-info {
+  color: $color_success;
+}
+
+
+.text-danger {
+  color: $color_success;
+  h2 {
+    color: $color_success;
+  }
+}
+
+

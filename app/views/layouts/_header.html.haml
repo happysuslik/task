@@ -1,8 +1,10 @@
 %div.navbar
   %div.navbar-header
-    %div.navbar-brand The Task
+    %div.navbar-brand
+      The Task
   %ul.nav.navbar-nav
-    = link_to('Home', root_path, class: "btn btn-info")
+    -if user_signed_in?
+      = link_to('Home', root_path, class: "btn btn-info")
   %ul.nav.navbar-nav.navbar-right
     %li
       -if user_signed_in?
