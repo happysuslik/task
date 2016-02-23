@@ -15,9 +15,14 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require underscore
+//= require moment-with-locales
 //= require angular
 //= require angular-ui-router
 //= require restangular
 //= require ng-file-upload-all
+//= require ui-bootstrap-tpls-1.1.2.min
 //= require angular-animate.min
+//= require bootstrap
+//= require datetimepicker
+//= require datetimepicker.templates
 //= require_tree .

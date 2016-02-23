@@ -92,8 +92,14 @@ angular.module("app")
       $scope.edit = function(task, project) {
         Id.updateValue(project.id);
         $state.go('edit', task);
-
       };
+
+
+      $scope.onTimeSet = function (newDate, oldDate, task) {
+        task.deadline =  newDate;
+        Restangular.copy(task).save();
+      };
+
 
       $scope.refresh();
 

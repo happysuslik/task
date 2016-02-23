@@ -1,5 +1,5 @@
 angular
-    .module("app", ['restangular', 'ui.router', 'ngFileUpload', 'ngAnimate'])
+    .module("app", ['restangular', 'ui.router', 'ngFileUpload', 'ngAnimate', 'ui.bootstrap', 'ui.bootstrap.datetimepicker'])
         .config([
             '$stateProvider',
             '$urlRouterProvider',
