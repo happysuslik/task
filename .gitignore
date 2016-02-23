@@ -12,3 +12,8 @@
 !/log/.keep
 /tmp
 .idea
+/tmp
+/public/system
+/public/uploads
+/coverage/
+/spec/tmp
