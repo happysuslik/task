@@ -26,8 +26,7 @@
     %div.breadcrumb
       Comments
       %div{"ng-repeat": "comment in comments"}
-        -#%img.img-rounded{src: '{{comment.avatar_url}}'}
-        -#{{comment.avatar}}
+        %img.img-rounded{src: '{{comment.avatar.url}}'}
         %br
         %div.well.well-lg
           %div.row
