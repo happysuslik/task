@@ -18,7 +18,7 @@ angular.module("app")
           Upload.upload({
             url: $scope.comments.getRestangularUrl(),
             method: 'POST',
-            fields: { 'comment[description]': $scope.comment.description, 'comment[task_id]': $scope.task_id, 'comment[avatar]' : $scope.picFile },
+            fields: { 'comment[description]': $scope.comment.description, 'comment[task_id]': $scope.task_id, 'comment[avatar]' : file },
             file: file
           }).then(function (response) {
                $scope.comments.push(response.data);
