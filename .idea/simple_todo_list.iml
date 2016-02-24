@@ -155,6 +155,7 @@
     </content>
     <orderEntry type="jdk" jdkName="RVM: ruby-2.2-head [simple_todo_list]" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="carrierwave (v0.10.0@a2c93f, RVM: ruby-2.2-head [simple_todo_list]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kaminari (v0.16.3, RVM: ruby-2.2-head [simple_todo_list]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="quiet_assets (v1.1.0, RVM: ruby-2.2-head [simple_todo_list]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-pjax (v0.8.0, RVM: ruby-2.2-head [simple_todo_list]) [gem]" level="application" />
