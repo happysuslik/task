@@ -32,11 +32,18 @@ angular
         .factory('Id', function(){
           var value = '';
           return {
-            updateValue: function(newValue) {
+            updateValueProject: function(newValue) {
               value = newValue;
             },
-            getValue: function() {
+            getValueProject: function() {
+              return value;
+            },
+            updateValueTask: function(newValue) {
+              value = newValue;
+            },
+            getValueTask: function() {
               return value;
             }
+
           }
         });

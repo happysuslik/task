@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-
     @comment = Comment.create(safe_params)
     render json: @comment
   end

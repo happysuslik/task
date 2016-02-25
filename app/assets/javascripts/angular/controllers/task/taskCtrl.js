@@ -90,7 +90,7 @@ angular.module("app")
       };
 
       $scope.edit = function(task, project) {
-        Id.updateValue(project.id);
+        Id.updateValueProject(project.id);
         $state.go('edit', task);
       };
 

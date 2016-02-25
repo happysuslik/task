@@ -4,11 +4,8 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :tasks do
+      resources :comments, only: [:index, :create, :destroy]
     end
-  end
-
-  resources :tasks do
-    resources :comments, only: [:index, :create, :destroy]
   end
 
   resources :client_views, only: [:show]

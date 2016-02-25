@@ -8,8 +8,9 @@ angular.module("app")
     'Restangular',
     'Upload',
     function($scope, Id, Restangular, Upload) {
-      $scope.task_id = Id.getValue();
-      Restangular.one('tasks', $scope.task_id).all('comments').getList().then(function(comments) {
+      $scope.task_id = Id.getValueTask();
+      $scope.project_id = Id.getValueProject();
+      Restangular.one('projects', $scope.project_id).one('tasks', $scope.task_id).all('comments').getList().then(function(comments) {
         $scope.comments = comments;
       });
 
@@ -34,7 +35,7 @@ angular.module("app")
       };
 
       $scope.destroy = function(comment) {
-        Restangular.one('tasks', $scope.task_id).one('comments', comment.id).remove();
+        Restangular.one('projects', $scope.project_id).one('tasks', $scope.task_id).one('comments', comment.id).remove();
         $scope.comments.splice($scope.comments.indexOf(comment), 1);
       };
 
