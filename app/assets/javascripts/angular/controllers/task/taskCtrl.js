@@ -98,6 +98,12 @@ angular.module("app")
         Restangular.copy(task).save();
       };
 
+      $scope.classPriority = function (task) {
+        var classPriority = angular.element(document).find('#task'+ task.id).selector;
+        return classPriority;
+      };
+
+
 
       $scope.refresh();
 

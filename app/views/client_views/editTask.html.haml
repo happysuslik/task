@@ -31,8 +31,8 @@
           %div.row
             %div.col-md-11
               {{comment.description}}
-            %div.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(comment)", "class": "destroyComment"}
-          %img.img-rounded{src: '{{comment.avatar.url}}'}
+            %div.btn.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(comment)", "class": "destroyComment"}
+          %img.img-rounded{src: '{{comment.avatar.url}}', "ng-if": "comment.avatar.url"}
           %br
     %div.well.well-lg
       %form{"name": "commentForm", novalidate: "true", class: "myForm"}
