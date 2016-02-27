@@ -20,4 +20,4 @@
    gem 'cancancan', '~> 1.10'
 
  We can will see work the app in Heroku :
-   https://afternoon-citadel-24438.herokuapp.com
+   https://limitless-basin-15993.herokuapp.com
