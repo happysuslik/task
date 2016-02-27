@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'the sign in processing' do
   before(:each) do
@@ -14,7 +14,7 @@ describe 'the sign in processing' do
 
   it 'sign_in_user', js: true do
     sign_in_with(@user.email, @user.password)
-    expect(page).to have_content 'All Tasks'
+    expect(page).to have_content 'SIMPLE TODO LISTS'
     expect(page).to have_no_content 'Admin panel'
     click_button 'Sign out'
   end
@@ -22,7 +22,7 @@ describe 'the sign in processing' do
   it 'return to home page', js: true do
     sign_in_with(@user.email, @user.password)
     click_link 'Home'
-    expect(page).to have_content 'All Tasks'
+    expect(page).to have_content 'SIMPLE TODO LISTS'
   end
 
   context 'visit admin' do

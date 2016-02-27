@@ -18,4 +18,5 @@ class Task < ActiveRecord::Base
       task.save
     end
   end
+
 end

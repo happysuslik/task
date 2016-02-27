@@ -22,7 +22,7 @@ angular.module("app")
         $scope.getError = function(error) {
           if (angular.isDefined(error)) {
             if (error.required) {
-              return "Input no be blank"
+              return "input can not be blank"
             }
           }
         };

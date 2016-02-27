@@ -18,6 +18,8 @@ describe 'User' do
       let(:user){ FactoryGirl.create :user }
 
       it{ should be_able_to(:manage, Task.new) }
+      it{ should be_able_to(:manage, Project.new) }
+      it{ should be_able_to(:manage, Comment.new) }
       it{ should should_not be_able_to(:access, :rails_admin) }
       it{ should should_not be_able_to(:dashboard, :all) }
 

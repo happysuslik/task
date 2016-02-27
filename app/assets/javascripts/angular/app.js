@@ -16,34 +16,35 @@ angular
                   .state('project/edit', {
                     url: '/project/:id/edit',
                     templateUrl: 'client_views/editProject.html',
-                    controller: 'editProjectCtrl'
+                    controller: "editProjectCtrl"
                   })
 
                   .state('edit', {
-                    url: '/task/:id/edit',
+                    url: '/project/:project_id/task/:id/edit',
                     templateUrl: 'client_views/edit.html',
-                    controller: 'editTaskCtrl'
+                    views: {
+                      "": {
+                        templateUrl: 'client_views/editTask.html',
+                        controller: 'editTaskCtrl'
+                      },
+                      "comments@edit": {
+                        //url: '/projects/:project_id/tasks/:task_id/comments',
+                        //templateUrl: 'client_views/comments.html'
+                        template: "<h1>Test</h1>"
+                      }
+                    }
+
+                    //"comments": {
+                    //  templateUrl: 'client_views/comments.html',
+                    //  controller: "commentCtrl"
+                    //}
+
                   });
+
 
                 $urlRouterProvider.otherwise('/');
 
             }
-        ])
-        .factory('Id', function(){
-          var value = '';
-          return {
-            updateValueProject: function(newValue) {
-              value = newValue;
-            },
-            getValueProject: function() {
-              return value;
-            },
-            updateValueTask: function(newValue) {
-              value = newValue;
-            },
-            getValueTask: function() {
-              return value;
-            }
+        ]);
 
-          }
-        });
+

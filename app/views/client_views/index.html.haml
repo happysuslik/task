@@ -16,7 +16,7 @@
 
         %span.input-group-btn
           %button.btn.btn-default{"ng-click": "addProject(project)", "ng-disabled": "myForm.$invalid"}
-            Add
+            Add Project
 
     %div{"ng-show": "myForm.uProject.$invalid" && "myForm.uProject.$dirty"}
       %h4.text-danger
@@ -29,8 +29,8 @@
           %div.list-group
             %div.col-md-10 {{project.title}}
 
-            %div.col-md-1.glyphicon.glyphicon-pencil{"ng-click": "edit(project)"}
-            %div.col-md-1.glyphicon.glyphicon-trash{"ng-click": "destroy(project)"}
+            %div.col-md-1.glyphicon.glyphicon-pencil{"ng-click": "edit(project)", "class": "projectEdit"}
+            %div.col-md-1.glyphicon.glyphicon-trash{"ng-click": "destroy(project)", "class": "projectDestroy"}
 
         -#Task
         %div{"ng-controller": "taskCtrl"}
@@ -72,9 +72,9 @@
 
               %span.glyphicon.glyphicon-arrow-down.col-md-1{"ng-click": "down(task)"}
 
-              %span.glyphicon.glyphicon-pencil.col-md-1{"ng-click": "edit(task, project)"}
+              %span.glyphicon.glyphicon-pencil.col-md-1{"ng-click": "edit(task, project)", "class": "taskEdit"}
 
-              %span.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(task)"}
+              %span.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(task)", "class": "taskDestroy"}
             %div{"ng-if": "task.deadline"}
               %br
 

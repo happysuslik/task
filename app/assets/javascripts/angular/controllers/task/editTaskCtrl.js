@@ -7,11 +7,9 @@ angular.module("app")
     'Restangular',
     '$stateParams',
     '$state',
-    'Id',
-    function($scope, Restangular, $stateParams, $state, Id) {
-      $scope.project_id = Id.getValueProject();
-      $scope.task = Restangular.one('projects', $scope.project_id).one('tasks', $stateParams.id).get().$object;
-      Id.updateValueTask($stateParams.id);
+    function($scope, Restangular, $stateParams, $state) {
+
+      $scope.task = Restangular.one('projects', $stateParams.project_id).one('tasks', $stateParams.id).get().$object;
 
       $scope.save = function() {
         Restangular.copy($scope.task).save();
@@ -25,7 +23,7 @@ angular.module("app")
       $scope.getError = function(error) {
         if (angular.isDefined(error)) {
           if (error.required) {
-            return "Input no be blank"
+            return "input can not be blank"
           }
         }
       };

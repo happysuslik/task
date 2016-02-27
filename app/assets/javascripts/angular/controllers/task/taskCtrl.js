@@ -6,9 +6,8 @@ angular.module("app")
     '$scope',
     'Restangular',
     '$state',
-    'Id',
     '$timeout',
-    function($scope, Restangular, $state, Id, $timeout) {
+    function($scope, Restangular, $state, $timeout) {
 
       $scope.refresh = function() {
         Restangular.one('projects', $scope.project.id).all('tasks').getList().then(function(tasks) {
@@ -90,8 +89,7 @@ angular.module("app")
       };
 
       $scope.edit = function(task, project) {
-        Id.updateValueProject(project.id);
-        $state.go('edit', task);
+        $state.go('edit', {project_id: project.id, id: task.id});
       };
 
 

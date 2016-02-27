@@ -4,13 +4,12 @@
 angular.module("app")
   .controller("commentCtrl", [
     '$scope',
-    'Id',
     'Restangular',
     'Upload',
-    function($scope, Id, Restangular, Upload) {
-      $scope.task_id = Id.getValueTask();
-      $scope.project_id = Id.getValueProject();
-      Restangular.one('projects', $scope.project_id).one('tasks', $scope.task_id).all('comments').getList().then(function(comments) {
+    '$stateParams',
+    function($scope, Restangular, Upload, $stateParams) {
+
+      Restangular.one('projects', $stateParams.project_id).one('tasks', $stateParams.id).all('comments').getList().then(function(comments) {
         $scope.comments = comments;
       });
 
@@ -19,7 +18,7 @@ angular.module("app")
           Upload.upload({
             url: $scope.comments.getRestangularUrl(),
             method: 'POST',
-            fields: { 'comment[description]': $scope.comment.description, 'comment[task_id]': $scope.task_id, 'comment[avatar]' : file },
+            fields: { 'comment[description]': $scope.comment.description, 'comment[task_id]': $stateParams.id, 'comment[avatar]' : file },
             file: file
           }).then(function (response) {
                $scope.comments.push(response.data);
@@ -35,14 +34,14 @@ angular.module("app")
       };
 
       $scope.destroy = function(comment) {
-        Restangular.one('projects', $scope.project_id).one('tasks', $scope.task_id).one('comments', comment.id).remove();
+        Restangular.one('projects', $stateParams.project_id).one('tasks', $stateParams.id).one('comments', comment.id).remove();
         $scope.comments.splice($scope.comments.indexOf(comment), 1);
       };
 
       $scope.getError = function(error) {
         if (angular.isDefined(error)) {
           if (error.required) {
-            return "Input no be blank"
+            return "input can not be blank"
           }
         }
       };
