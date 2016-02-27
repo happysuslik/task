@@ -8,6 +8,4 @@
     = csrf_meta_tags
   %body.container{"ng-app": "app"}
     =render 'layouts/header'
-    - flash.each do |name, msg|
-      = content_tag :div, msg, class: "alert alert-info"
     = yield

@@ -10,7 +10,7 @@
           %input.form-control{type: "text", name: "input",
                                             placeholder: "Input your task",
                                             "ng-model": "task.text",
-                                            "ng-class": "task.completed === true ? 'green' : ''",
+                                            "ng-class": "task.completed",
                                             "ng-required": "true"}
           %span.input-group-btn
             %button.btn.btn-default{"ng-click": "save()", "ng-disabled": "formEdit.$invalid"}
@@ -20,4 +20,40 @@
         %div{"ng-show": "formEdit.input.$invalid"}
           %h4.text-danger
             {{getError(formEdit.input.$error)}}
+      %br
+
+  %div{"ng-controller": "commentCtrl"}
+    %div.breadcrumb
+      Comments
+      %br
+      %div{"ng-repeat": "comment in comments"}
+        %div.well.well-lg
+          %div.row
+            %div.col-md-11
+              {{comment.description}}
+            %div.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(comment)", "class": "destroyComment"}
+          %img.img-rounded{src: '{{comment.avatar.url}}'}
+          %br
+    %div.well.well-lg
+      %form{"name": "commentForm", novalidate: "true", class: "myForm"}
+        %div.row
+          %input.well.col-md-12{"type": "text", "placeholder": "Your comment",
+                                  "ng-model": "comment.description",
+                                  "name": "descriptionF", "ng-required": "true"}
+
+          %div{"ng-show": "commentForm.descriptionF.$invalid" && "commentForm.descriptionF.$dirty"}
+            %h4.text-danger
+              {{getError(commentForm.descriptionF.$error)}}
+          %br
+        %button.btn.btn-default{type: "file", "ngf-select": "", "ng-model": "picFile",
+                                 "ngf-accept": "'image/*'", "ngf-max-size": "2MB",
+                                 "ngf-min-height": "100", "ngf-resize": "{width: 100, height: 100}"}
+          Select file
         %br
+        %div{"ng-if": "picFile"}
+          %img{"ngf-thumbnail": "picFile", "class": "thumb"}
+            %button.btn.btn-danger{"ng-click": "remove()"}
+              Remove
+        %br
+        %button.btn.btn-success{"ng-click": "upload(picFile)", "ng-disabled": "commentForm.$invalid"}
+          Add a comment

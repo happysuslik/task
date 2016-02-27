@@ -2,12 +2,15 @@
   %div.navbar-header
     %div.navbar-brand
       The Task
-  %ul.nav.navbar-nav
-    -if user_signed_in?
+  -if user_signed_in?
+    %ul.nav.navbar-nav
       = link_to('Home', root_path, class: "btn btn-info")
-  %ul.nav.navbar-nav.navbar-right
-    %li
-      -if user_signed_in?
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        %li
+          %h4
+            Welcome
+            =current_user.email
         %li
           %div= button_to('Sign out', destroy_user_session_path,
                       :method => :delete, class: "btn btn-info")

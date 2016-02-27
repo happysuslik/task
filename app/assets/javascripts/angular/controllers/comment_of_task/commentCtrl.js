@@ -14,7 +14,6 @@ angular.module("app")
       });
 
       $scope.upload = function (file) {
-
           Upload.upload({
             url: $scope.comments.getRestangularUrl(),
             method: 'POST',
