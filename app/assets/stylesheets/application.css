@@ -14,6 +14,7 @@
  *= require bootstrap
  *= require bootstrap-theme
  *= require datetimepicker
+ *= require angular-ui-tree.min
  *= require_tree .
  */
 

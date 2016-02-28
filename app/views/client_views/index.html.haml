@@ -20,14 +20,14 @@
 
     %div{"ng-show": "myForm.uProject.$invalid" && "myForm.uProject.$dirty"}
       %h4.text-danger
-        {{getError(myForm.uProject.$error)}}
+        {{ getError(myForm.uProject.$error) }}
     %br
 
     %div{"ng-repeat": "project in projects"}
       %div.panel.panel-primary
         %div.panel-heading
           %div.list-group
-            %div.col-md-10 {{project.title}}
+            %div.col-md-10 {{ project.title }}
 
             %div.btn.btn-xs.col-md-1.glyphicon.glyphicon-pencil{"ng-click": "edit(project)", "class": "projectEdit"}
             %div.btn.btn-xs.col-md-1.glyphicon.glyphicon-trash{"ng-click": "destroy(project)", "class": "projectDestroy"}
@@ -52,42 +52,88 @@
 
             %div{"ng-show": "myForm.uTask.$invalid" && "myForm.uTask.$dirty"}
               %h4.text-danger
-                {{getError(myForm.uTask.$error)}}
+                {{ getError(myForm.uTask.$error) }}
 
-          %div.well{"ng-repeat": "task in tasks | orderBy: 'priority'",
-                    "ng-class": "task.completed === true ? 'alert alert-success' : ''"}
-            %div.row
 
-              %div.dropdown.col-md-1
-                %div.btn.btn-xs.glyphicon.glyphicon-calendar.dropdown-toggle{"type": "button", "id": "task{{task.id}}",
-                                                                             "data-toggle": "dropdown",
-                                                                             "class": "task{{task.priority}}",
-                                                                             "data-ng-model": "data.dateDropDownInput"}
+          %div{"ui-tree": "treeOptions"}
+            %ol{"ui-tree-nodes": "", "ng-model": "tasks", "id": "taskTree{{project.id}}"}
+              %li.well{"ng-repeat": "task in tasks | orderBy: 'priority'" ,
+                       "ng-class": "task.completed === true ? 'alert alert-success' : ''",
+                       "ui-tree-node": ""}
 
-                %ul.dropdown-menu{"aria-labelledby": "task{{task.priority}}"}
-                  %datetimepicker{"data-ng-model": "data.dateDropDownInput",
-                                  "data-datetimepicker-config": "{ dropdownSelector: classPriority(task) }",
-                                  "data-on-set-time": "onTimeSet(newDate, oldDate, task)",
-                                  "data-before-render": "beforeRender($dates)"}
+                %div.row
+                  %div.dropdown.col-md-1
+                    %div.btn.btn-xs.glyphicon.glyphicon-calendar.dropdown-toggle{"type": "button", "id": "task{{task.id}}",
+                                                                                 "data-toggle": "dropdown",
+                                                                                 "class": "task{{task.priority}}",
+                                                                                 "data-ng-model": "data.dateDropDownInput"}
 
-              %div.col-md-1
-                %input{"type": "checkbox", "name": "tCheckBox", "ng-model": "task.completed",
-                       "ng-click": "editCheckBox(task)"}
-              %span.col-md-6{"id": "viewTask"}
-                {{task.text}}
+                    %ul.dropdown-menu{"aria-labelledby": "task{{task.priority}}"}
+                      %datetimepicker{"data-ng-model": "data.dateDropDownInput",
+                                      "data-datetimepicker-config": "{ dropdownSelector: classPriority(task) }",
+                                      "data-on-set-time": "onTimeSet(newDate, oldDate, task)",
+                                      "data-before-render": "beforeRender($dates)",
+                                      "data-nodrag": ""}
 
-              %span.btn.glyphicon.glyphicon-arrow-up.col-md-1{"ng-click": "up(task)"}
+                  %div.col-md-1
+                    %input{"type": "checkbox", "name": "tCheckBox",
+                           "ng-model": "task.completed",
+                           "ng-click": "editCheckBox(task)",
+                           "data-nodrag": ""}
 
-              %span.btn.glyphicon.glyphicon-arrow-down.col-md-1{"ng-click": "down(task)"}
+                  %span.col-md-7
+                    {{ task.text }}
 
-              %span.btn.glyphicon.glyphicon-pencil.col-md-1{"ng-click": "edit(task, project)", "class": "taskEdit"}
+                  %span.btn.glyphicon.glyphicon-resize-vertical.col-md-1{"ui-tree-handle": ""}
 
-              %span.btn.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(task)", "class": "taskDestroy"}
-            %div{"ng-if": "task.deadline"}
-              %br
 
-              %div
-                Deadline for my task: {{task.deadline | date:'yyyy-MM-dd HH:mm'}}
+                  %span.btn.glyphicon.glyphicon-pencil.col-md-1{"ng-click": "edit(task, project)", "class": "taskEdit",
+                                                                "data-nodrag": ""}
+
+                  %span.btn.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(task)", "class": "taskDestroy",
+                                                               "data-nodrag": ""}
+                %div{"ng-if": "task.deadline"}
+                  %br
+
+                  %div
+                    Deadline for my task: {{ task.deadline | date:'yyyy-MM-dd HH:mm' }}
+
+
+
+          -#%div.well{"ng-repeat": "task in tasks | orderBy: 'priority'",
+          -#          "ng-class": "task.completed === true ? 'alert alert-success' : ''"}
+          -#  %div.row
+          -#
+          -#    %div.dropdown.col-md-1
+          -#      %div.btn.btn-xs.glyphicon.glyphicon-calendar.dropdown-toggle{"type": "button", "id": "task{{task.id}}",
+          -#                                                                   "data-toggle": "dropdown",
+          -#                                                                   "class": "task{{task.priority}}",
+          -#                                                                   "data-ng-model": "data.dateDropDownInput"}
+          -#
+          -#      %ul.dropdown-menu{"aria-labelledby": "task{{task.priority}}"}
+          -#        %datetimepicker{"data-ng-model": "data.dateDropDownInput",
+          -#                        "data-datetimepicker-config": "{ dropdownSelector: classPriority(task) }",
+          -#                        "data-on-set-time": "onTimeSet(newDate, oldDate, task)",
+          -#                        "data-before-render": "beforeRender($dates)"}
+          -#
+          -#    %div.col-md-1
+          -#      %input{"type": "checkbox", "name": "tCheckBox", "ng-model": "task.completed",
+          -#             "ng-click": "editCheckBox(task)"}
+          -#    %span.col-md-6{"id": "viewTask"}
+          -#      {{task.text}}
+          -#
+          -#    %span.btn.glyphicon.glyphicon-arrow-up.col-md-1{"ng-click": "up(task)"}
+          -#
+          -#    %span.btn.glyphicon.glyphicon-arrow-down.col-md-1{"ng-click": "down(task)"}
+          -#
+          -#    %span.btn.glyphicon.glyphicon-pencil.col-md-1{"ng-click": "edit(task, project)", "class": "taskEdit"}
+          -#
+          -#    %span.btn.glyphicon.glyphicon-trash.col-md-1{"ng-click": "destroy(task)", "class": "taskDestroy"}
+          -#  %div{"ng-if": "task.deadline"}
+          -#    %br
+          -#
+          -#    %div
+          -#      Deadline for my task: {{task.deadline | date:'yyyy-MM-dd HH:mm'}}
 
 
 

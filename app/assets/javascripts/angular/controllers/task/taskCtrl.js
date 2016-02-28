@@ -38,40 +38,58 @@ angular.module("app")
         angular.forEach($scope.tasks, function(obj) {
           $scope.result.push(obj);
         });
-
       };
 
-      $scope.up = function(task) {
+      $scope.up = function(task, step) {
         $scope.task_result();
+
         if (task.priority != 0) {
           angular.forEach($scope.result, function(obj) {
-            if(obj.priority == task.priority - 1) {
+            if(obj.priority == task.priority - step) {
               $scope.task_down = obj;
             }
           });
-          $scope.task_down.priority += 1;
-          $timeout(function() {
-            Restangular.copy($scope.task_down).save();
-          }, 250);
-          task.priority -= 1;
+
+          task.priority -= step;
           Restangular.copy(task).save();
+          $scope.result.splice($scope.result.indexOf(task), 1);
+
+          angular.forEach($scope.result, function(task) {
+            if (task.priority >= $scope.task_down.priority) {
+              task.priority += 1;
+
+              $timeout(function() {
+                Restangular.copy(task).save();
+              }, 250);
+            }
+          });
         }
       };
 
-      $scope.down = function(task) {
+      $scope.down = function(task, step) {
         $scope.task_result();
+
         if (task.priority != $scope.result.length - 1) {
           angular.forEach($scope.result, function(obj) {
-            if(obj.priority == task.priority + 1 ) {
+            if(obj.priority == task.priority + step ) {
               $scope.task_up = obj;
             }
           });
-          $scope.task_up.priority -= 1;
-          $timeout(function() {
-            Restangular.copy($scope.task_up).save();
-          }, 250);
-          task.priority += 1;
+
+          task.priority += step;
           Restangular.copy(task).save();
+          $scope.result.splice($scope.result.indexOf(task), 1);
+
+          angular.forEach($scope.result, function(task) {
+            if (task.priority <= $scope.task_up.priority) {
+              if (task.priority != 0) {
+                task.priority -= 1;
+              }
+              $timeout(function() {
+                Restangular.copy(task).save();
+              }, 250);
+            }
+          });
         }
       };
 
@@ -103,7 +121,25 @@ angular.module("app")
         return classPriority;
       };
 
+      $scope.treeOptions = {
+        dropped: function(e) {
+          var step = 0;
 
+          if (e.dest.index >  e.source.index) {
+            step = e.dest.index - e.source.index;
+            $scope.down(e.source.nodeScope.task, step);
+          } else {
+            step = e.source.index - e.dest.index;
+            $scope.up(e.source.nodeScope.task, step);
+          }
+        },
+
+        beforeDrop: function(e) {
+          if (e.dest.nodesScope.$element.context.id != e.source.nodesScope.$element.context.id) {
+            return false
+          }
+        }
+      };
 
       $scope.refresh();
 

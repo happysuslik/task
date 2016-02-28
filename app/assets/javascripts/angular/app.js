@@ -1,5 +1,12 @@
 angular
-    .module("app", ['restangular', 'ui.router', 'ngFileUpload', 'ngAnimate', 'ui.bootstrap', 'ui.bootstrap.datetimepicker'])
+    .module("app", [
+      'restangular',
+      'ui.router',
+      'ngFileUpload',
+      'ngAnimate',
+      'ui.bootstrap',
+      'ui.bootstrap.datetimepicker',
+      'ui.tree'])
         .config([
             '$stateProvider',
             '$urlRouterProvider',

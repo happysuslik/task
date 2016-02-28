@@ -25,4 +25,5 @@
 //= require bootstrap
 //= require datetimepicker
 //= require datetimepicker.templates
+//= require angular-ui-tree
 //= require_tree .
