@@ -20,4 +20,9 @@
    gem 'cancancan', '~> 1.10'
 
  We can will see work the app in Heroku :
-   https://limitless-basin-15993.herokuapp.com
+
+   1. Change priority, but no use Drag and Drop, function facebook off
+      https://limitless-basin-15993.herokuapp.com
+
+   2. Change priority use Drag and Drop (angular-ui-tree), function facebook on
+      https://afternoon-fortress-87044.herokuapp.com
